@@ -17,17 +17,6 @@ public class Item {
 
     private Float price;
 
-    private Long stokeId;
-
-    public Long getStokeId() {
-        return stokeId;
-    }
-
-    public Item setStokeId(Long stokeId) {
-        this.stokeId = stokeId;
-        return this;
-    }
-
     public Item() {
     }
 

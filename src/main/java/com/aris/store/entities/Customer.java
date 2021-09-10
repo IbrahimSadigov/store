@@ -4,6 +4,7 @@ package com.aris.store.entities;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -18,7 +19,8 @@ public class Customer {
 
     private String email;
 
-    @Transient
+    @OneToMany(targetEntity = CustomerItem.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id_fk", referencedColumnName = "customer_id")
     private List<CustomerItem> customerItems;
 
     public Customer() {

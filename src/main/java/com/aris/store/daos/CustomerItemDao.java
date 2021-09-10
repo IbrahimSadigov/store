@@ -34,9 +34,9 @@ public class CustomerItemDao {
 
     @Transactional
     public CustomerItem uptade(CustomerItem customerItem){
-        Optional<CustomerItem> oldCustomerItem = customerItemRepo.findById(customerItem.getCustomerId());
+        Optional<CustomerItem> oldCustomerItem = customerItemRepo.findById(customerItem.getId());
         if (oldCustomerItem.isPresent()){
-            oldCustomerItem.get().setTotalQuantity(customerItem.getTotalQuantity()).setTotalPrice(customerItem.getTotalPrice()).setStockId(customerItem.getStockId()).setCustomerId(customerItem.getCustomerId()).setStocks(customerItem.getStocks());
+            oldCustomerItem.get().setTotalQuantity(customerItem.getTotalQuantity()).setTotalPrice(customerItem.getTotalPrice()).setItems(customerItem.getItems());
             return customerItemRepo.save(oldCustomerItem.get());
         }
         else throw new RuntimeException("There is no List");

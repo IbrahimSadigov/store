@@ -48,7 +48,7 @@ public class ItemDao {
     public Item uptade(Item item){
         Optional<Item> uptadedItem = itemRepo.findById(item.getId());
         if (uptadedItem.isPresent()){
-            uptadedItem.get().setName(item.getName()).setBarcode(item.getBarcode()).setPrice(item.getPrice()).setStokeId(item.getStokeId());
+            uptadedItem.get().setName(item.getName()).setBarcode(item.getBarcode()).setPrice(item.getPrice());
             return itemRepo.save(uptadedItem.get());
         }
         else throw new RuntimeException("There is no Customer like "+ item.getName()+ "!");

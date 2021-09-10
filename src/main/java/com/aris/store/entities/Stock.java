@@ -1,10 +1,14 @@
 package com.aris.store.entities;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "stock")
 public class Stock {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long itemQuantity;

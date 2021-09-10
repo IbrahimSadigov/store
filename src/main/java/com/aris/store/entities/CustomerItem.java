@@ -15,12 +15,10 @@ public class CustomerItem {
 
     private Float totalPrice;
 
-    private Long stockId;
-
-    private Long customerId;
-
     @Transient
-    private List<Stock> stocks;
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerItem_id_fk", referencedColumnName = "id")
+    private List<Item> items;
 
     public CustomerItem() {
     }
@@ -52,30 +50,12 @@ public class CustomerItem {
         return this;
     }
 
-    public Long getStockId() {
-        return stockId;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public CustomerItem setStockId(Long stockId) {
-        this.stockId = stockId;
-        return this;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public CustomerItem setCustomerId(Long customerId) {
-        this.customerId = customerId;
-        return this;
-    }
-
-    public List<Stock> getStocks() {
-        return stocks;
-    }
-
-    public CustomerItem setStocks(List<Stock> stocks) {
-        this.stocks = stocks;
+    public CustomerItem setItems(List<Item> items) {
+        this.items = items;
         return this;
     }
 }
