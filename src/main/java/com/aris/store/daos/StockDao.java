@@ -14,12 +14,12 @@ public class StockDao {
     @Autowired
     StockRepo stockRepo;
 
-    public String add(Stock stock){
+    public String insert(Stock stock){
         stockRepo.save(stock);
-        return "Stock successfully added!";
+        return "Stock successfully inserted.";
     }
 
-    public List<Stock> allStock(){
+    public List<Stock> selectAll(){
         return (List<Stock>) stockRepo.findAll();
     }
 

@@ -2,6 +2,7 @@ package com.aris.store.daos;
 
 import com.aris.store.entities.Customer;
 import com.aris.store.repositories.CustomerRepo;
+import com.aris.store.repositories.CustomerRepo2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +16,46 @@ public class CustomerDao {
     @Autowired
     CustomerRepo customerRepo;
 
-    public String add(Customer customer){
+    @Autowired
+    CustomerRepo2 customerRepo2;
+
+    public String insert(Customer customer){
         customerRepo.save(customer);
-        return "Customer added successfully";
+        return "Customer inserted successfully";
     }
 
-    public List<Customer> allCustomers(){
+    public List<Customer> selectAll(){
         return (List<Customer>) customerRepo.findAll();
     }
 
-    public void delete(Long customerID){
+    public Optional<Customer> selectById(Long customerId){
+        if (!customerRepo.existsById(customerId)){
+            throw new RuntimeException("ID you want to select does not exist");
+        }
+        return customerRepo.findById(customerId);
+    }
+
+    public Customer selectByName(Customer customer){
+        Optional<Customer> selectedName = customerRepo.findByName("%" + customer.getName() + "%");
+        if (!selectedName.isPresent()){
+            throw new RuntimeException("There is no customer like " + customer.getName());
+        }
+        return selectedName.get();
+    }
+
+    public List<Customer> selectAny(String keyword){
+        if (keyword != null){
+            return customerRepo2.search(keyword);
+        }
+        return customerRepo2.findAll();
+    }
+
+    public String delete(Long customerID){
         if (!customerRepo.existsById(customerID)){
             throw new RuntimeException("ID you want to delete does not exist");
         }
         customerRepo.deleteById(customerID);
+        return "Customer deleted";
     }
 
     @Transactional

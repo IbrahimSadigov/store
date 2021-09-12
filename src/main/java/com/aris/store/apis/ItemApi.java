@@ -14,9 +14,9 @@ public class ItemApi {
     @Autowired
     ItemDao itemDao;
 
-    @PostMapping("/add")
-    public String add(@RequestBody Item item){
-        return itemDao.add(item);
+    @PostMapping("/insert")
+    public String insert(@RequestBody Item item){
+        return itemDao.insert(item);
     }
 
 //    @GetMapping("/allItems")
@@ -24,9 +24,9 @@ public class ItemApi {
 //        return itemDao.allItem();
 //    }
 
-    @GetMapping("/allItems")
-    public List<Item> allItems(){
-        return itemDao.allItem();
+    @GetMapping("/selectAll")
+    public List<Item> selectAll(){
+        return itemDao.selectAll();
     }
 
     @DeleteMapping("/delete/{itemId}")
@@ -34,9 +34,9 @@ public class ItemApi {
         itemDao.delete(itemId);
     }
 
-    @PostMapping("/uptade/")
-    public Item uptade(@RequestBody Item item){
-        return itemDao.uptade(item);
+    @PostMapping("/update/")
+    public Item update(@RequestBody Item item){
+        return itemDao.update(item);
     }
 
 }

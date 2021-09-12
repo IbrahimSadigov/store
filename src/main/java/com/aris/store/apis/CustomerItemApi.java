@@ -14,14 +14,14 @@ public class CustomerItemApi {
     @Autowired
     CustomerItemDao customerItemDao;
 
-    @PostMapping("/add")
-    public String add(@RequestBody CustomerItem customerItem){
-        return customerItemDao.add(customerItem);
+    @PostMapping("/insert")
+    public String insert(@RequestBody CustomerItem customerItem){
+        return customerItemDao.insert(customerItem);
     }
 
-    @GetMapping("/allList")
+    @GetMapping("/selectAll")
     public List<CustomerItem> customerItems(){
-        return customerItemDao.allList();
+        return customerItemDao.selectAll();
     }
 
     @DeleteMapping("/delete/{customerItemId}")
@@ -29,9 +29,9 @@ public class CustomerItemApi {
         customerItemDao.delete(customerItemId);
     }
 
-    @PutMapping("/uptade")
-    public CustomerItem uptade(@RequestBody CustomerItem customerItem){
-        return customerItemDao.uptade(customerItem);
+    @PutMapping("/update")
+    public CustomerItem update(@RequestBody CustomerItem customerItem){
+        return customerItemDao.update(customerItem);
     }
 
 }

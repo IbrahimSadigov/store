@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/customer")
@@ -14,23 +15,33 @@ public class CustomerApi {
     @Autowired
     CustomerDao customerDao;
 
-    @PostMapping("/add")
-    public String add(@RequestBody Customer customer){
-        return customerDao.add(customer);
+    @PostMapping("/insert")
+    public String insert(@RequestBody Customer customer){
+        return customerDao.insert(customer);
     }
 
-    @GetMapping("/allCustomers")
-    public List<Customer> allCustomers(){
-        return customerDao.allCustomers();
+    @GetMapping("/selectAll")
+    public List<Customer> selectAll(){
+        return customerDao.selectAll();
     }
 
-    @DeleteMapping("/delete/{customerID}")
-    public void delete(@PathVariable("customerID") Long customerID){
-        customerDao.delete(customerID);
+    @GetMapping("/selectById/{customerId}")
+    public Optional<Customer> selectById(@PathVariable("customerId") Long customerId){
+        return customerDao.selectById(customerId);
     }
 
-    @PutMapping("/uptade")
-    public Customer uptade(@RequestBody Customer customer) {
+    @GetMapping("/selectAny")
+    public List<Customer> selectAny(@RequestParam  String keyword, @RequestParam int limit, @RequestParam int page){
+        return customerDao.selectAny(keyword);
+    }
+
+    @DeleteMapping("/delete/{customerId}")
+    public String delete(@PathVariable("customerId") Long customerId){
+        return customerDao.delete(customerId);
+    }
+
+    @PutMapping("/update")
+    public Customer update(@RequestBody Customer customer) {
         return customerDao.update(customer);
     }
 

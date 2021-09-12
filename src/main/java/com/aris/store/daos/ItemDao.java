@@ -17,12 +17,12 @@ public class ItemDao {
     @Autowired
     ItemRepo itemRepo;
 
-    public String add(Item item) {
+    public String insert(Item item) {
         itemRepo.save(item);
-        return "Item successfully added.";
+        return "Item successfully inserted.";
     }
 
-    public List<Item> allItem() {
+    public List<Item> selectAll() {
         return (List<Item>) itemRepo.findAll();
     }
 
@@ -45,11 +45,11 @@ public class ItemDao {
 //    }
 
 
-    public Item uptade(Item item){
-        Optional<Item> uptadedItem = itemRepo.findById(item.getId());
-        if (uptadedItem.isPresent()){
-            uptadedItem.get().setName(item.getName()).setBarcode(item.getBarcode()).setPrice(item.getPrice());
-            return itemRepo.save(uptadedItem.get());
+    public Item update(Item item){
+        Optional<Item> updatedItem = itemRepo.findById(item.getId());
+        if (updatedItem.isPresent()){
+            updatedItem.get().setName(item.getName()).setBarcode(item.getBarcode()).setPrice(item.getPrice());
+            return itemRepo.save(updatedItem.get());
         }
         else throw new RuntimeException("There is no Customer like "+ item.getName()+ "!");
 

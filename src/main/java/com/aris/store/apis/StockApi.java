@@ -14,14 +14,14 @@ public class StockApi {
     @Autowired
     StockDao stockDao;
 
-    @PostMapping("/add")
-    public String add(@RequestBody Stock stock){
-        return stockDao.add(stock);
+    @PostMapping("/insert")
+    public String insert(@RequestBody Stock stock){
+        return stockDao.insert(stock);
     }
 
-    @GetMapping("/allStock")
-    public List<Stock> allStock(){
-        return stockDao.allStock();
+    @GetMapping("/selectAll")
+    public List<Stock> selectAll(){
+        return stockDao.selectAll();
     }
 
     @DeleteMapping("/delete/{stockId}")

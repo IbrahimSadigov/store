@@ -16,12 +16,12 @@ public class CustomerItemDao {
     @Autowired
     CustomerItemRepo customerItemRepo;
 
-    public String add(CustomerItem customerItem){
+    public String insert(CustomerItem customerItem){
         customerItemRepo.save(customerItem);
-        return "Item added Customer List";
+        return "Item inserted Customer List.";
     }
 
-    public List<CustomerItem> allList(){
+    public List<CustomerItem> selectAll(){
         return (List<CustomerItem>) customerItemRepo.findAll();
     }
 
@@ -33,10 +33,10 @@ public class CustomerItemDao {
     }
 
     @Transactional
-    public CustomerItem uptade(CustomerItem customerItem){
+    public CustomerItem update(CustomerItem customerItem){
         Optional<CustomerItem> oldCustomerItem = customerItemRepo.findById(customerItem.getId());
         if (oldCustomerItem.isPresent()){
-            oldCustomerItem.get().setTotalQuantity(customerItem.getTotalQuantity()).setTotalPrice(customerItem.getTotalPrice()).setItems(customerItem.getItems());
+            oldCustomerItem.get().setTotalPrice(customerItem.getTotalPrice()).setItems(customerItem.getItems());
             return customerItemRepo.save(oldCustomerItem.get());
         }
         else throw new RuntimeException("There is no List");
