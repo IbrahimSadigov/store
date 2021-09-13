@@ -1,5 +1,9 @@
 package com.aris.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,9 +17,21 @@ public class CustomerItem {
 
     private Float totalPrice;
 
-    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_item_id_fk", referencedColumnName = "id")
-    private List<Item> items;
+//    @OneToMany(targetEntity = Item.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "customer_item_id_fk", referencedColumnName = "id")
+//    private List<Item> items;
+
+    @ManyToOne(targetEntity = Customer.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public CustomerItem setCustomer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
 
     public CustomerItem() {
     }
@@ -38,12 +54,5 @@ public class CustomerItem {
         return this;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
 
-    public CustomerItem setItems(List<Item> items) {
-        this.items = items;
-        return this;
-    }
 }

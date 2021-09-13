@@ -11,7 +11,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customer_id;
+    private Long id;
 
     private String name;
 
@@ -19,19 +19,18 @@ public class Customer {
 
     private String email;
 
-    @OneToMany(targetEntity = CustomerItem.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id_fk", referencedColumnName = "customer_id")
+    @OneToMany(targetEntity = CustomerItem.class, mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CustomerItem> customerItems;
 
     public Customer() {
     }
 
-    public Long getCustomer_id() {
-        return customer_id;
+    public Long getId() {
+        return id;
     }
 
-    public Customer setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
+    public Customer setId(Long customer_id) {
+        this.id = customer_id;
         return this;
     }
 

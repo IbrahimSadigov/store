@@ -30,11 +30,6 @@ public class CustomerApi {
         return customerDao.selectById(customerId);
     }
 
-    @GetMapping("/selectAny")
-    public List<Customer> selectAny(@RequestParam  String keyword, @RequestParam int limit, @RequestParam int page){
-        return customerDao.selectAny(keyword);
-    }
-
     @DeleteMapping("/delete/{customerId}")
     public String delete(@PathVariable("customerId") Long customerId){
         return customerDao.delete(customerId);

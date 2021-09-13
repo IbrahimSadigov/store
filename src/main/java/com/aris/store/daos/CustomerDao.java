@@ -2,7 +2,6 @@ package com.aris.store.daos;
 
 import com.aris.store.entities.Customer;
 import com.aris.store.repositories.CustomerRepo;
-import com.aris.store.repositories.CustomerRepo2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +14,6 @@ public class CustomerDao {
 
     @Autowired
     CustomerRepo customerRepo;
-
-    @Autowired
-    CustomerRepo2 customerRepo2;
 
     public String insert(Customer customer){
         customerRepo.save(customer);
@@ -43,13 +39,6 @@ public class CustomerDao {
         return selectedName.get();
     }
 
-    public List<Customer> selectAny(String keyword){
-        if (keyword != null){
-            return customerRepo2.search(keyword);
-        }
-        return customerRepo2.findAll();
-    }
-
     public String delete(Long customerID){
         if (!customerRepo.existsById(customerID)){
             throw new RuntimeException("ID you want to delete does not exist");
@@ -60,7 +49,7 @@ public class CustomerDao {
 
     @Transactional
     public Customer update(Customer customer){
-        Optional<Customer> oldCustomer = customerRepo.findById(customer.getCustomer_id());
+        Optional<Customer> oldCustomer = customerRepo.findById(customer.getId());
         if (oldCustomer.isPresent()){
             oldCustomer.get().setName(customer.getName()).setSurname(customer.getSurname()).setEmail(customer.getEmail()).setCustomerItems(customer.getCustomerItems());
             return customerRepo.save(oldCustomer.get());
