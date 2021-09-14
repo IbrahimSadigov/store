@@ -39,6 +39,13 @@ public class CustomerDao {
         return selectedName.get();
     }
 
+    public List<Customer> search(String keyword){
+        if (keyword != null) {
+            return customerRepo.search(keyword);
+        }
+        return (List<Customer>) customerRepo.findAll();
+    }
+
     public String delete(Long customerID){
         if (!customerRepo.existsById(customerID)){
             throw new RuntimeException("ID you want to delete does not exist");

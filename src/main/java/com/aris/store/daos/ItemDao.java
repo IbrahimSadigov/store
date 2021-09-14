@@ -26,11 +26,12 @@ public class ItemDao {
         return (List<Item>) itemRepo.findAll();
     }
 
-    public void delete(Long itemID){
+    public String delete(Long itemID){
         if (!itemRepo.existsById(itemID)){
             throw new RuntimeException("ID you want to delete does not exist");
         }
         itemRepo.deleteById(itemID);
+        return "Item deleted successfully";
     }
 
 //    public List<Item> selectAllBy() {

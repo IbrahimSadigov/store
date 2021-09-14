@@ -3,6 +3,8 @@ package com.aris.store.apis;
 import com.aris.store.daos.CustomerDao;
 import com.aris.store.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +40,15 @@ public class CustomerApi {
     @PutMapping("/update")
     public Customer update(@RequestBody Customer customer) {
         return customerDao.update(customer);
+    }
+
+    @RequestMapping("/")
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+        List<Customer> listProducts = customerDao.search(keyword);
+        model.addAttribute("listProducts", listProducts);
+        model.addAttribute("keyword", keyword);
+
+        return "index";
     }
 
 }

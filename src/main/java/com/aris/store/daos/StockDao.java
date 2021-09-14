@@ -23,11 +23,12 @@ public class StockDao {
         return (List<Stock>) stockRepo.findAll();
     }
 
-    public void delete(Long stockId){
+    public String delete(Long stockId){
         if (stockRepo.existsById(stockId)){
             stockRepo.deleteById(stockId);
         }
         else throw new RuntimeException("Stock you want to delete does not exist!");
+        return "Stock id deleted";
     }
 
     public Stock update(Stock stock){

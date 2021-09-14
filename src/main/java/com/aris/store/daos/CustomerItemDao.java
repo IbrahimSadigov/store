@@ -30,11 +30,12 @@ public class CustomerItemDao {
         return (List<CustomerItem>) customerItemRepo.findAll();
     }
 
-    public void delete(Long customerItemId){
+    public String delete(Long customerItemId){
         if(!customerItemRepo.existsById(customerItemId)){
             throw new RuntimeException("Item you want to delete is not in List!");
         }
         customerItemRepo.deleteById(customerItemId);
+        return "customerItem deleted successfully";
     }
 
     @Transactional
