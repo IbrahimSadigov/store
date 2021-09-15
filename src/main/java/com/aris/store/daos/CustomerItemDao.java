@@ -5,6 +5,7 @@ import com.aris.store.entities.CustomerItem;
 import com.aris.store.repositories.CustomerItemRepo;
 import com.aris.store.repositories.CustomerRepo;
 import com.aris.store.repositories.ItemRepo;
+import com.aris.store.repositories.ViewStoreRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,9 @@ public class CustomerItemDao {
 
     @Autowired
     ItemRepo itemRepo;
+
+    @Autowired
+    ViewStoreRepo view_storeRepo;
 
     public String insert(CustomerItem customerItem){
         customerItemRepo.save(customerItem

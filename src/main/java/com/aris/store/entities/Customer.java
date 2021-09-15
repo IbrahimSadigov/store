@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "customer")
-@Where(clause = "deleted = false")
+//@Where(clause = "deleted = false")
 public class Customer {
 
     @Id

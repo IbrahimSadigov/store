@@ -7,20 +7,18 @@ import javax.persistence.*;
 @Entity
 @Immutable
 @Table(name = "view_store")
-public class View_Store {
+public class ViewStore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(insertable = false, updatable = false)
-    private Long view_id;
+    private Long id;
 
     private Long id_customer;
 
     private String customer_name;
 
     private String customer_surname;
-
-    private Long id;
 
     private Float quantity;
 
@@ -31,16 +29,15 @@ public class View_Store {
     private Long item_price;
 
 
-    public View_Store() {
+    public ViewStore() {
     }
 
-
-    public Long getView_id() {
-        return view_id;
+    public Long getId() {
+        return id;
     }
 
-    public View_Store setView_id(Long view_id) {
-        this.view_id = view_id;
+    public ViewStore setId(Long id) {
+        this.id = id;
         return this;
     }
 
@@ -48,7 +45,7 @@ public class View_Store {
         return id_customer;
     }
 
-    public View_Store setId_customer(Long id_customer) {
+    public ViewStore setId_customer(Long id_customer) {
         this.id_customer = id_customer;
         return this;
     }
@@ -57,7 +54,7 @@ public class View_Store {
         return customer_name;
     }
 
-    public View_Store setCustomer_name(String customer_name) {
+    public ViewStore setCustomer_name(String customer_name) {
         this.customer_name = customer_name;
         return this;
     }
@@ -66,17 +63,8 @@ public class View_Store {
         return customer_surname;
     }
 
-    public View_Store setCustomer_surname(String customer_surname) {
+    public ViewStore setCustomer_surname(String customer_surname) {
         this.customer_surname = customer_surname;
-        return this;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public View_Store setId(Long id) {
-        this.id = id;
         return this;
     }
 
@@ -84,7 +72,7 @@ public class View_Store {
         return quantity;
     }
 
-    public View_Store setQuantity(Float quantity) {
+    public ViewStore setQuantity(Float quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -93,7 +81,7 @@ public class View_Store {
         return id_item;
     }
 
-    public View_Store setId_item(Long id_item) {
+    public ViewStore setId_item(Long id_item) {
         this.id_item = id_item;
         return this;
     }
@@ -102,7 +90,7 @@ public class View_Store {
         return item_name;
     }
 
-    public View_Store setItem_name(String item_name) {
+    public ViewStore setItem_name(String item_name) {
         this.item_name = item_name;
         return this;
     }
@@ -111,7 +99,7 @@ public class View_Store {
         return item_price;
     }
 
-    public View_Store setItem_price(Long item_price) {
+    public ViewStore setItem_price(Long item_price) {
         this.item_price = item_price;
         return this;
     }
