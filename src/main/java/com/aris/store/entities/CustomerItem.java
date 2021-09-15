@@ -15,14 +15,22 @@ public class CustomerItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Float totalPrice;
+    private Float quantity;
 
-//    @OneToMany(targetEntity = Item.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "customer_item_id_fk", referencedColumnName = "id")
-//    private List<Item> items;
+    @ManyToOne(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Item item;
 
-    @ManyToOne(targetEntity = Customer.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(targetEntity = Customer.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Customer customer;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public CustomerItem setItem(Item item) {
+        this.item = item;
+        return this;
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -45,12 +53,12 @@ public class CustomerItem {
         return this;
     }
 
-    public Float getTotalPrice() {
-        return totalPrice;
+    public Float getQuantity() {
+        return quantity;
     }
 
-    public CustomerItem setTotalPrice(Float totalPrice) {
-        this.totalPrice = totalPrice;
+    public CustomerItem setQuantity(Float quantity) {
+        this.quantity = quantity;
         return this;
     }
 

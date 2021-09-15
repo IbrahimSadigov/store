@@ -3,6 +3,7 @@ package com.aris.store.apis;
 import com.aris.store.daos.CustomerItemDao;
 import com.aris.store.entities.CustomerItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +34,11 @@ public class CustomerItemApi {
     public CustomerItem update(@RequestBody CustomerItem customerItem){
         return customerItemDao.update(customerItem);
     }
+
+
+//    @GetMapping("/")
+//    public String index(Model model){
+//        model.addAttribute("customerId", )
+//    }
 
 }

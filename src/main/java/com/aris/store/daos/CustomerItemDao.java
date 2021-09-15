@@ -4,6 +4,7 @@ package com.aris.store.daos;
 import com.aris.store.entities.CustomerItem;
 import com.aris.store.repositories.CustomerItemRepo;
 import com.aris.store.repositories.CustomerRepo;
+import com.aris.store.repositories.ItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,12 @@ public class CustomerItemDao {
     @Autowired
     CustomerRepo customerRepo;
 
+    @Autowired
+    ItemRepo itemRepo;
+
     public String insert(CustomerItem customerItem){
         customerItemRepo.save(customerItem
-                .setCustomer(customerRepo.findById(customerItem.getCustomer().getId()).orElse(null)));
+                .setCustomer(customerRepo.findById(customerItem.getCustomer().getId()).orElse(null)).setItem(itemRepo.findById(customerItem.getItem().getId()).orElse(null)));
         return "Item inserted Customer List.";
     }
 
@@ -42,7 +46,7 @@ public class CustomerItemDao {
     public CustomerItem update(CustomerItem customerItem){
         Optional<CustomerItem> oldCustomerItem = customerItemRepo.findById(customerItem.getId());
         if (oldCustomerItem.isPresent()){
-            oldCustomerItem.get().setTotalPrice(customerItem.getTotalPrice());
+            oldCustomerItem.get().setQuantity(customerItem.getQuantity());
             return customerItemRepo.save(oldCustomerItem.get());
         }
         else throw new RuntimeException("There is no List");

@@ -1,12 +1,16 @@
 package com.aris.store.entities;
 
 
+import org.hibernate.annotations.Where;
+import org.springframework.http.HttpStatus;
+
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
 @Table(name = "customer")
+@Where(clause = "deleted = false")
 public class Customer {
 
     @Id
@@ -19,8 +23,6 @@ public class Customer {
 
     private String email;
 
-    @OneToMany(targetEntity = CustomerItem.class, mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CustomerItem> customerItems;
 
     public Customer() {
     }
@@ -61,12 +63,5 @@ public class Customer {
         return this;
     }
 
-    public List<CustomerItem> getCustomerItems() {
-        return customerItems;
-    }
 
-    public Customer setCustomerItems(List<CustomerItem> customerItems) {
-        this.customerItems = customerItems;
-        return this;
-    }
 }

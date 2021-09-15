@@ -58,7 +58,7 @@ public class CustomerDao {
     public Customer update(Customer customer){
         Optional<Customer> oldCustomer = customerRepo.findById(customer.getId());
         if (oldCustomer.isPresent()){
-            oldCustomer.get().setName(customer.getName()).setSurname(customer.getSurname()).setEmail(customer.getEmail()).setCustomerItems(customer.getCustomerItems());
+            oldCustomer.get().setName(customer.getName()).setSurname(customer.getSurname()).setEmail(customer.getEmail());
             return customerRepo.save(oldCustomer.get());
         }
         else throw new RuntimeException("There is no Customer like "+ customer.getName()+ "!");
